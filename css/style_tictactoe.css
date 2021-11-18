@@ -1,0 +1,8 @@
+.container {
+    margin:auto;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: aquamarine;
+    max-width: 600px;
+    min-height: 600px;
+}
