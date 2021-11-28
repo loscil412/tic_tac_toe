@@ -84,7 +84,9 @@ function clickFunction(e){
                 if (arrayOfEmptySquares.includes(MIDDLE_SQUARE)) {
                     computer_index = MIDDLE_SQUARE;
                 } else {
+                    // do some calculations to determine best defensive or offensive move
                     computer_index = arrayOfEmptySquares[Math.floor(Math.random() * arrayOfEmptySquares.length)];
+                    checkForWinningSum(computer_index);
                 }
                 document.querySelector('#quad_'+computer_index).style = DISPLAY_COMPUTER_MARK
                 mark_tracker[computer_index] = COMPUTER_MARK;
@@ -148,6 +150,18 @@ function isGameWon(index){
 function checkForWinningSum(left_or_top_box, mid_offset, end_box_offset){
     let score_array = [mark_tracker[left_or_top_box], mark_tracker[left_or_top_box+mid_offset], mark_tracker[left_or_top_box+end_box_offset]]
     let winning_sum = 0;
+    // this could be adapted?
+    // if score_array.includes(null) && score_array sum == HUMAN_WINNING_SCORE (3) - 1 [i.e. 2], then return the box id of the null location
+    if (score_array.includes(null)) {
+        console.log("score_array ==> ", score_array)
+        let isElementNull = (element) => element == null;
+        let indexOfNull = score_array.findIndex(isElementNull);
+        if (indexOfNull != -1) {
+
+        }
+        console.log("We have a null in our score array at ", indexOfNull)
+    }
+    
     if (!score_array.includes(null)) {
         score_array.forEach(value => winning_sum += value);
     }
